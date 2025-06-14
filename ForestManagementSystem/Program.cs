@@ -2,6 +2,7 @@ using ForestManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
+using ForestManagementSystem.Forms;
 
 namespace ForestManagementSystem
 {
@@ -28,7 +29,7 @@ namespace ForestManagementSystem
                 context.Database.EnsureCreated();
             }
 
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }
