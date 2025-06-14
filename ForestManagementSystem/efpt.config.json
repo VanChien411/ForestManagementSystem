@@ -1,0 +1,137 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "ForestManagementSystemContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "ForestManagementSystem",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[BaoCao]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[BienDongRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DienTichChuaCoRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DieuKienLapDia]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DonViHanhChinhHuyen]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DonViHanhChinhTinh]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DonViHanhChinhXa]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[HuongDanSuDung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[KhuRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[LichSuTacDong]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[LichSuTruyCap]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[LoaiCay]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[LoaiRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[LoDatRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Menu]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NguoiDung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NguoiDung_Nhom]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NguonGocRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NhomNguoiDung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PhanQuyenNguoiDung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PhanQuyenNhom]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TrangThai]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TruLuong]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": true,
+   "UseNoDefaultConstructor": true,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": true,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}

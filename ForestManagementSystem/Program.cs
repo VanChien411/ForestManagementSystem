@@ -1,3 +1,8 @@
+using ForestManagementSystem.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
+
 namespace ForestManagementSystem
 {
     internal static class Program
@@ -11,6 +16,18 @@ namespace ForestManagementSystem
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            // Configure DbContext
+            var optionsBuilder = new DbContextOptionsBuilder<ForestManagementSystemContext>();
+            optionsBuilder.UseSqlServer("Data Source=HT-ITN\\SQLEXPRESS;Initial Catalog=ForestManagementSystem;Integrated Security=True;Trust Server Certificate=True");
+
+            // Create DbContext instance
+            using (var context = new ForestManagementSystemContext(optionsBuilder.Options))
+            {
+                // Ensure database is created
+                context.Database.EnsureCreated();
+            }
+
             Application.Run(new Form1());
         }
     }
