@@ -31,7 +31,9 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            role = new DataGridViewTextBoxColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDefault));
+            vehicleType = new DataGridViewTextBoxColumn();
+            hasCard = new DataGridViewTextBoxColumn();
             LostCard = new DataGridViewButtonColumn();
             lbHeader = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -41,13 +43,16 @@
             dtpStartDate = new DateTimePicker();
             tableLayoutPanel10 = new TableLayoutPanel();
             customButton1 = new ForestManagementSystem.Common.Button.CustomButton();
-            hasCard = new DataGridViewTextBoxColumn();
+            textBoxControl2 = new ForestManagementSystem.Common.Text.TextBoxControl();
+            role = new DataGridViewTextBoxColumn();
+            tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
             label4 = new Label();
             lbEligibleCards = new Label();
             lbUserNeedCard = new Label();
             lbCardType = new Label();
-            vehicleType = new DataGridViewTextBoxColumn();
+            cardType = new DataGridViewTextBoxColumn();
+            tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
             gListCard = new GroupBox();
             tblLayoutListCard = new TableLayoutPanel();
@@ -67,14 +72,15 @@
             STT = new DataGridViewTextBoxColumn();
             UserId = new DataGridViewTextBoxColumn();
             UserName = new DataGridViewTextBoxColumn();
-            cardType = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            customButton2 = new ForestManagementSystem.Common.Button.CustomButton();
+            pictureBox1 = new PictureBox();
             tableLayoutPanel2.SuspendLayout();
             groupBox1.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             gListCard.SuspendLayout();
             tblLayoutListCard.SuspendLayout();
@@ -83,14 +89,21 @@
             tableLayoutPanel9.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // role
+            // vehicleType
             // 
-            role.FillWeight = 120F;
-            role.HeaderText = "Vai trò";
-            role.MinimumWidth = 6;
-            role.Name = "role";
+            vehicleType.HeaderText = "Loại xe";
+            vehicleType.MinimumWidth = 6;
+            vehicleType.Name = "vehicleType";
+            // 
+            // hasCard
+            // 
+            hasCard.FillWeight = 70F;
+            hasCard.HeaderText = "Số thẻ sở hữu";
+            hasCard.MinimumWidth = 6;
+            hasCard.Name = "hasCard";
             // 
             // LostCard
             // 
@@ -114,7 +127,7 @@
             lbHeader.Name = "lbHeader";
             lbHeader.Size = new Size(947, 51);
             lbHeader.TabIndex = 3;
-            lbHeader.Text = "Title";
+            lbHeader.Text = "Danh Sách Sử Dụng Thẻ";
             lbHeader.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
@@ -196,8 +209,7 @@
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel10.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel10.Controls.Add(customButton2, 0, 0);
-            tableLayoutPanel10.Controls.Add(customButton1, 1, 0);
+            tableLayoutPanel10.Controls.Add(customButton1, 2, 0);
             tableLayoutPanel10.Dock = DockStyle.Fill;
             tableLayoutPanel10.Location = new Point(286, 10);
             tableLayoutPanel10.Margin = new Padding(3, 10, 3, 3);
@@ -210,29 +222,56 @@
             // customButton1
             // 
             customButton1.BackColor = Color.Transparent;
-            customButton1.BorderColor = Color.PaleTurquoise;
+            customButton1.BorderColor = Color.Blue;
             customButton1.BorderRadius = 5;
             customButton1.BorderSize = 0;
             customButton1.ButtonColor = Color.Blue;
             customButton1.ButtonIcon = null;
             customButton1.ButtonType = Common.Button.ButtonType.Primary;
-            customButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            customButton1.Font = new Font("Arial", 14.8F, FontStyle.Bold);
             customButton1.ForeColor = Color.White;
             customButton1.IconSize = 20;
             customButton1.IconSpacing = 5;
-            customButton1.Location = new Point(221, 3);
+            customButton1.Location = new Point(439, 3);
             customButton1.Name = "customButton1";
-            customButton1.Size = new Size(188, 50);
+            customButton1.Size = new Size(188, 52);
             customButton1.TabIndex = 0;
-            customButton1.Text = "customButton1";
+            customButton1.Text = "Button1";
             customButton1.TextColor = Color.White;
             // 
-            // hasCard
+            // textBoxControl2
             // 
-            hasCard.FillWeight = 70F;
-            hasCard.HeaderText = "Số thẻ sở hữu";
-            hasCard.MinimumWidth = 6;
-            hasCard.Name = "hasCard";
+            textBoxControl2.BorderColor = Color.FromArgb(128, 128, 128);
+            textBoxControl2.BorderThickness = 1;
+            textBoxControl2.Dock = DockStyle.Fill;
+            textBoxControl2.FocusBorderColor = Color.FromArgb(0, 120, 215);
+            textBoxControl2.Location = new Point(3, 3);
+            textBoxControl2.Name = "textBoxControl2";
+            textBoxControl2.Size = new Size(246, 63);
+            textBoxControl2.TabIndex = 1;
+            // 
+            // role
+            // 
+            role.FillWeight = 120F;
+            role.HeaderText = "Vai trò";
+            role.MinimumWidth = 6;
+            role.Name = "role";
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.74683F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.2531643F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel5.Controls.Add(textBoxControl2, 0, 0);
+            tableLayoutPanel5.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel5.Location = new Point(301, 5);
+            tableLayoutPanel5.Margin = new Padding(0);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Size = new Size(316, 69);
+            tableLayoutPanel5.TabIndex = 29;
             // 
             // tableLayoutPanel4
             // 
@@ -247,11 +286,11 @@
             tableLayoutPanel4.Controls.Add(lbEligibleCards, 0, 0);
             tableLayoutPanel4.Controls.Add(lbUserNeedCard, 1, 0);
             tableLayoutPanel4.Controls.Add(lbCardType, 0, 0);
-            tableLayoutPanel4.Location = new Point(60, 164);
+            tableLayoutPanel4.Location = new Point(60, 249);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(670, 56);
+            tableLayoutPanel4.Size = new Size(890, 56);
             tableLayoutPanel4.TabIndex = 7;
             // 
             // label4
@@ -288,7 +327,7 @@
             lbUserNeedCard.ForeColor = Color.Black;
             lbUserNeedCard.Location = new Point(784, 0);
             lbUserNeedCard.Name = "lbUserNeedCard";
-            lbUserNeedCard.Size = new Size(60, 56);
+            lbUserNeedCard.Size = new Size(103, 56);
             lbUserNeedCard.TabIndex = 7;
             lbUserNeedCard.Text = "0";
             lbUserNeedCard.TextAlign = ContentAlignment.MiddleLeft;
@@ -306,29 +345,47 @@
             lbCardType.Text = "Số lượng thẻ có thể dùng:";
             lbCardType.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // vehicleType
+            // cardType
             // 
-            vehicleType.HeaderText = "Loại xe";
-            vehicleType.MinimumWidth = 6;
-            vehicleType.Name = "vehicleType";
+            cardType.HeaderText = "Loại thẻ";
+            cardType.MinimumWidth = 6;
+            cardType.Name = "cardType";
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 3;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 346F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 643F));
+            tableLayoutPanel3.Controls.Add(tableLayoutPanel5, 2, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(60, 164);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.Padding = new Padding(0, 5, 0, 5);
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(944, 79);
+            tableLayoutPanel3.TabIndex = 6;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.BackColor = Color.White;
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(gListCard, 0, 3);
+            tableLayoutPanel1.Controls.Add(gListCard, 0, 4);
             tableLayoutPanel1.Controls.Add(lbHeader, 0, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 1);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 0, 2);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 2);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.ForeColor = Color.Black;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new Padding(57, 20, 57, 20);
-            tableLayoutPanel1.RowCount = 5;
+            tableLayoutPanel1.RowCount = 6;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 85F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 62F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
@@ -343,9 +400,9 @@
             gListCard.Dock = DockStyle.Fill;
             gListCard.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gListCard.ForeColor = SystemColors.ActiveCaption;
-            gListCard.Location = new Point(60, 226);
+            gListCard.Location = new Point(60, 311);
             gListCard.Name = "gListCard";
-            gListCard.Size = new Size(944, 422);
+            gListCard.Size = new Size(944, 337);
             gListCard.TabIndex = 4;
             gListCard.TabStop = false;
             gListCard.Text = "Danh Sách Người Dùng Mất Thẻ Cần Cấp Lại";
@@ -362,7 +419,7 @@
             tblLayoutListCard.Padding = new Padding(20, 0, 20, 0);
             tblLayoutListCard.RowCount = 1;
             tblLayoutListCard.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tblLayoutListCard.Size = new Size(938, 385);
+            tblLayoutListCard.Size = new Size(938, 300);
             tblLayoutListCard.TabIndex = 0;
             // 
             // tableLayoutPanel7
@@ -377,7 +434,7 @@
             tableLayoutPanel7.RowCount = 2;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            tableLayoutPanel7.Size = new Size(892, 379);
+            tableLayoutPanel7.Size = new Size(892, 294);
             tableLayoutPanel7.TabIndex = 0;
             // 
             // tableLayoutPanel6
@@ -392,7 +449,7 @@
             tableLayoutPanel6.Controls.Add(lbShow, 1, 0);
             tableLayoutPanel6.Controls.Add(tableLayoutPanel9, 0, 0);
             tableLayoutPanel6.Controls.Add(tableLayoutPanel11, 3, 0);
-            tableLayoutPanel6.Location = new Point(3, 310);
+            tableLayoutPanel6.Location = new Point(3, 225);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -456,7 +513,7 @@
             // 
             cbRowNumber.Anchor = AnchorStyles.Left;
             cbRowNumber.FormattingEnabled = true;
-            cbRowNumber.Location = new Point(84, 12);
+            cbRowNumber.Location = new Point(84, 16);
             cbRowNumber.Name = "cbRowNumber";
             cbRowNumber.Size = new Size(79, 36);
             cbRowNumber.TabIndex = 9;
@@ -475,11 +532,11 @@
             tableLayoutPanel11.Controls.Add(cbPages, 0, 0);
             tableLayoutPanel11.Controls.Add(label6, 0, 0);
             tableLayoutPanel11.Controls.Add(label8, 4, 0);
-            tableLayoutPanel11.Location = new Point(682, 3);
+            tableLayoutPanel11.Location = new Point(408, 3);
             tableLayoutPanel11.Name = "tableLayoutPanel11";
             tableLayoutPanel11.RowCount = 1;
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel11.Size = new Size(201, 60);
+            tableLayoutPanel11.Size = new Size(475, 60);
             tableLayoutPanel11.TabIndex = 10;
             // 
             // lblTotalPages
@@ -488,7 +545,7 @@
             lblTotalPages.Dock = DockStyle.Fill;
             lblTotalPages.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotalPages.ForeColor = Color.Black;
-            lblTotalPages.Location = new Point(-199, 0);
+            lblTotalPages.Location = new Point(73, 0);
             lblTotalPages.Name = "lblTotalPages";
             lblTotalPages.Size = new Size(79, 60);
             lblTotalPages.TabIndex = 11;
@@ -499,9 +556,9 @@
             // 
             cbPages.Anchor = AnchorStyles.Left;
             cbPages.FormattingEnabled = true;
-            cbPages.Location = new Point(-93, 12);
+            cbPages.Location = new Point(36, 16);
             cbPages.Name = "cbPages";
-            cbPages.Size = new Size(1, 36);
+            cbPages.Size = new Size(31, 36);
             cbPages.TabIndex = 10;
             // 
             // label6
@@ -512,7 +569,7 @@
             label6.ForeColor = Color.Black;
             label6.Location = new Point(3, 0);
             label6.Name = "label6";
-            label6.Size = new Size(1, 60);
+            label6.Size = new Size(27, 60);
             label6.TabIndex = 9;
             label6.Text = "[ Trang:";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -523,7 +580,7 @@
             label8.Dock = DockStyle.Fill;
             label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(36, 0);
+            label8.Location = new Point(308, 0);
             label8.Name = "label8";
             label8.Size = new Size(13, 60);
             label8.TabIndex = 33;
@@ -573,7 +630,7 @@
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridView1.RowTemplate.Height = 55;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView1.Size = new Size(886, 301);
+            dataGridView1.Size = new Size(886, 216);
             dataGridView1.TabIndex = 1;
             // 
             // STT
@@ -595,12 +652,6 @@
             UserName.MinimumWidth = 6;
             UserName.Name = "UserName";
             // 
-            // cardType
-            // 
-            cardType.HeaderText = "Loại thẻ";
-            cardType.MinimumWidth = 6;
-            cardType.Name = "cardType";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -610,25 +661,19 @@
             label1.TabIndex = 2;
             label1.Text = "label1";
             // 
-            // customButton2
+            // pictureBox1
             // 
-            customButton2.BackColor = Color.Transparent;
-            customButton2.BorderColor = Color.PaleTurquoise;
-            customButton2.BorderRadius = 5;
-            customButton2.BorderSize = 0;
-            customButton2.ButtonColor = Color.FromArgb(220, 53, 69);
-            customButton2.ButtonIcon = null;
-            customButton2.ButtonType = Common.Button.ButtonType.Danger;
-            customButton2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            customButton2.ForeColor = Color.White;
-            customButton2.IconSize = 20;
-            customButton2.IconSpacing = 5;
-            customButton2.Location = new Point(3, 3);
-            customButton2.Name = "customButton2";
-            customButton2.Size = new Size(188, 50);
-            customButton2.TabIndex = 1;
-            customButton2.Text = "customButton2";
-            customButton2.TextColor = Color.White;
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(255, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(58, 63);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // ucDefault
             // 
@@ -643,8 +688,10 @@
             groupBox1.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel10.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             gListCard.ResumeLayout(false);
@@ -657,13 +704,15 @@
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridViewTextBoxColumn role;
+        private DataGridViewTextBoxColumn vehicleType;
+        private DataGridViewTextBoxColumn hasCard;
         private DataGridViewButtonColumn LostCard;
         private Label lbHeader;
         private TableLayoutPanel tableLayoutPanel2;
@@ -672,13 +721,15 @@
         private DateTimePicker dtpEndDate;
         private DateTimePicker dtpStartDate;
         private TableLayoutPanel tableLayoutPanel10;
-        private DataGridViewTextBoxColumn hasCard;
+        private DataGridViewTextBoxColumn role;
+        private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel4;
         public Label label4;
         public Label lbEligibleCards;
         public Label lbUserNeedCard;
         public Label lbCardType;
-        private DataGridViewTextBoxColumn vehicleType;
+        private DataGridViewTextBoxColumn cardType;
+        private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox gListCard;
         private TableLayoutPanel tblLayoutListCard;
@@ -698,9 +749,10 @@
         private DataGridViewTextBoxColumn STT;
         private DataGridViewTextBoxColumn UserId;
         private DataGridViewTextBoxColumn UserName;
-        private DataGridViewTextBoxColumn cardType;
         private Label label1;
-        private Common.Button.CustomButton customButton1;
-        private Common.Button.CustomButton customButton2;
+        private Common.Text.TextBoxControl textBoxControl1;
+        private Common.Text.TextBoxControl textBoxControl2;
+        public PictureBox pictureBox1;
+        public Common.Button.CustomButton customButton1;
     }
 }
