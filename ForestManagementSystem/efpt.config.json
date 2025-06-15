@@ -19,7 +19,19 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[BaoCaoThienTai]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[BienDongRung]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DiemLuQuet]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DiemTruotLo]",
          "ObjectType": 0
       },
       {

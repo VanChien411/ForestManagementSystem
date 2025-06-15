@@ -193,12 +193,24 @@ namespace ForestManagementSystem.Forms
 
             // Khu Rừng (ComboBox)
             var cmbKhuRung = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            var khuRungList = await _context.KhuRung.ToListAsync();
+            var khuRungList = _context.KhuRung.ToList();
             cmbKhuRung.DataSource = khuRungList;
             cmbKhuRung.DisplayMember = "TenKhuRung";
             cmbKhuRung.ValueMember = "MaKhuRung";
-            if (quyHoachRung != null)
-                cmbKhuRung.SelectedValue = quyHoachRung.MaKhuRung;
+
+            // Đợi ComboBox render xong rồi mới set SelectedValue
+            this.BeginInvoke(new Action(() => {
+                if (quyHoachRung != null && quyHoachRung.MaKhuRung.HasValue)
+                {
+                    cmbKhuRung.SelectedValue = quyHoachRung.MaKhuRung.Value;
+                    Console.WriteLine($"SelectedValue Khu Rừng sau khi set: {cmbKhuRung.SelectedValue}");
+                }
+                else
+                {
+                    cmbKhuRung.SelectedIndex = -1;
+                }
+            }));
+
             AddControlRow(cmbKhuRung, "Khu Rừng:");
 
             // Kỳ Quy Hoạch (TextBox)
@@ -233,22 +245,46 @@ namespace ForestManagementSystem.Forms
 
             // Người Dùng (ComboBox)
             var cmbNguoiDung = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            var nguoiDungList = await _context.NguoiDung.ToListAsync();
+            var nguoiDungList = _context.NguoiDung.ToList();
             cmbNguoiDung.DataSource = nguoiDungList;
             cmbNguoiDung.DisplayMember = "TenNguoiDung";
             cmbNguoiDung.ValueMember = "MaNguoiDung";
-            if (quyHoachRung != null)
-                cmbNguoiDung.SelectedValue = quyHoachRung.MaNguoiDung;
+
+            // Đợi ComboBox render xong rồi mới set SelectedValue
+            this.BeginInvoke(new Action(() => {
+                if (quyHoachRung != null && quyHoachRung.MaNguoiDung.HasValue)
+                {
+                    cmbNguoiDung.SelectedValue = quyHoachRung.MaNguoiDung.Value;
+                    Console.WriteLine($"SelectedValue Người Dùng sau khi set: {cmbNguoiDung.SelectedValue}");
+                }
+                else
+                {
+                    cmbNguoiDung.SelectedIndex = -1;
+                }
+            }));
+
             AddControlRow(cmbNguoiDung, "Người Dùng:");
 
             // Trạng Thái (ComboBox)
             var cmbTrangThai = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            var trangThaiList = await _context.TrangThai.ToListAsync();
+            var trangThaiList = _context.TrangThai.ToList();
             cmbTrangThai.DataSource = trangThaiList;
             cmbTrangThai.DisplayMember = "TenTrangThai";
             cmbTrangThai.ValueMember = "MaTrangThai";
-            if (quyHoachRung != null)
-                cmbTrangThai.SelectedValue = quyHoachRung.MaTrangThai;
+
+            // Đợi ComboBox render xong rồi mới set SelectedValue
+            this.BeginInvoke(new Action(() => {
+                if (quyHoachRung != null && quyHoachRung.MaTrangThai.HasValue)
+                {
+                    cmbTrangThai.SelectedValue = quyHoachRung.MaTrangThai.Value;
+                    Console.WriteLine($"SelectedValue Trạng Thái sau khi set: {cmbTrangThai.SelectedValue}");
+                }
+                else
+                {
+                    cmbTrangThai.SelectedIndex = -1;
+                }
+            }));
+
             AddControlRow(cmbTrangThai, "Trạng Thái:");
 
             // Add spacing row at the bottom
@@ -261,14 +297,38 @@ namespace ForestManagementSystem.Forms
                 try
                 {
                     var quyHoach = quyHoachRung ?? new QuyHoachRung();
-                    quyHoach.MaKhuRung = (int)cmbKhuRung.SelectedValue;
-                    quyHoach.KyQuyHoach = txtKyQuyHoach.Text;
+                    
+                    // Xử lý MaKhuRung (có thể null)
+                    quyHoach.MaKhuRung = cmbKhuRung.SelectedValue != null ? (int)cmbKhuRung.SelectedValue : null;
+
+                    // Xử lý KyQuyHoach (NOT NULL)
+                    if (string.IsNullOrWhiteSpace(txtKyQuyHoach.Text))
+                    {
+                        MessageBox.Show("Vui lòng nhập Kỳ Quy Hoạch", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    quyHoach.KyQuyHoach = txtKyQuyHoach.Text.Trim();
+
+                    // Xử lý NgayBatDau và NgayKetThuc (có thể null)
+                    if (dtpNgayBatDau.Value > dtpNgayKetThuc.Value)
+                    {
+                        MessageBox.Show("Ngày Bắt Đầu không được lớn hơn Ngày Kết Thúc", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     quyHoach.NgayBatDau = dtpNgayBatDau.Value;
                     quyHoach.NgayKetThuc = dtpNgayKetThuc.Value;
-                    quyHoach.NoiDungBaoCao = txtNoiDungBaoCao.Text;
-                    quyHoach.DuongDanBanDo = txtDuongDanBanDo.Text;
-                    quyHoach.MaNguoiDung = (int)cmbNguoiDung.SelectedValue;
-                    quyHoach.MaTrangThai = (int)cmbTrangThai.SelectedValue;
+
+                    // Xử lý NoiDungBaoCao (có thể null)
+                    quyHoach.NoiDungBaoCao = string.IsNullOrWhiteSpace(txtNoiDungBaoCao.Text) ? null : txtNoiDungBaoCao.Text.Trim();
+
+                    // Xử lý DuongDanBanDo (có thể null)
+                    quyHoach.DuongDanBanDo = string.IsNullOrWhiteSpace(txtDuongDanBanDo.Text) ? null : txtDuongDanBanDo.Text.Trim();
+
+                    // Xử lý MaNguoiDung (có thể null)
+                    quyHoach.MaNguoiDung = cmbNguoiDung.SelectedValue != null ? (int)cmbNguoiDung.SelectedValue : null;
+
+                    // Xử lý MaTrangThai (có thể null)
+                    quyHoach.MaTrangThai = cmbTrangThai.SelectedValue != null ? (int)cmbTrangThai.SelectedValue : null;
 
                     if (quyHoachRung == null)
                     {

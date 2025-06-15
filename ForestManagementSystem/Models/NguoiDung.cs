@@ -25,6 +25,12 @@ public partial class NguoiDung
 
     public virtual ICollection<BaoCao> BaoCao { get; set; } = new List<BaoCao>();
 
+    public virtual ICollection<BaoCaoThienTai> BaoCaoThienTai { get; set; } = new List<BaoCaoThienTai>();
+
+    public virtual ICollection<DiemLuQuet> DiemLuQuet { get; set; } = new List<DiemLuQuet>();
+
+    public virtual ICollection<DiemTruotLo> DiemTruotLo { get; set; } = new List<DiemTruotLo>();
+
     public virtual ICollection<KhuRung> KhuRung { get; set; } = new List<KhuRung>();
 
     public virtual ICollection<LichSuTacDong> LichSuTacDong { get; set; } = new List<LichSuTacDong>();

@@ -13,6 +13,12 @@ public partial class TrangThai
 
     public string? MoTa { get; set; }
 
+    public virtual ICollection<BaoCaoThienTai> BaoCaoThienTai { get; set; } = new List<BaoCaoThienTai>();
+
+    public virtual ICollection<DiemLuQuet> DiemLuQuet { get; set; } = new List<DiemLuQuet>();
+
+    public virtual ICollection<DiemTruotLo> DiemTruotLo { get; set; } = new List<DiemTruotLo>();
+
     public virtual ICollection<Menu> Menu { get; set; } = new List<Menu>();
 
     public virtual ICollection<NguoiDung> NguoiDung { get; set; } = new List<NguoiDung>();

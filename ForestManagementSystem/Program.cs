@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using ForestManagementSystem.Forms;
+using ForestManagementSystem.Forms.User;
 
 namespace ForestManagementSystem
 {
@@ -37,8 +38,8 @@ namespace ForestManagementSystem
                 context.Database.EnsureCreated();
             }
 
-            var mainForm = ServiceProvider.GetRequiredService<MainForm>();
-            Application.Run(mainForm);
+            var loginForm = ServiceProvider.GetRequiredService<LoginForm>();
+            Application.Run(loginForm);
         }
 
         private static void ConfigureServices(ServiceCollection services)
@@ -49,6 +50,7 @@ namespace ForestManagementSystem
 
             // Register forms
             services.AddTransient<MainForm>();
+            services.AddTransient<LoginForm>();
             services.AddTransient<ucDefault>();
         }
     }

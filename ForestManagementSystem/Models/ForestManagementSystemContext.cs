@@ -15,7 +15,13 @@ public partial class ForestManagementSystemContext : DbContext
 
     public virtual DbSet<BaoCao> BaoCao { get; set; }
 
+    public virtual DbSet<BaoCaoThienTai> BaoCaoThienTai { get; set; }
+
     public virtual DbSet<BienDongRung> BienDongRung { get; set; }
+
+    public virtual DbSet<DiemLuQuet> DiemLuQuet { get; set; }
+
+    public virtual DbSet<DiemTruotLo> DiemTruotLo { get; set; }
 
     public virtual DbSet<DienTichChuaCoRung> DienTichChuaCoRung { get; set; }
 
@@ -78,6 +84,42 @@ public partial class ForestManagementSystemContext : DbContext
                 .HasConstraintName("FK__BaoCao__MaNguoiD__60A75C0F");
         });
 
+        modelBuilder.Entity<BaoCaoThienTai>(entity =>
+        {
+            entity.HasKey(e => e.MaBaoCaoThienTai).HasName("PK__BaoCaoTh__9CC685A8FA90A2AB");
+
+            entity.Property(e => e.LoaiThienTai)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.NgayCapNhat)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.NoiDung).HasColumnType("text");
+            entity.Property(e => e.TieuDe)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.MaLuQuetNavigation).WithMany(p => p.BaoCaoThienTai)
+                .HasForeignKey(d => d.MaLuQuet)
+                .HasConstraintName("FK__BaoCaoThi__MaLuQ__245D67DE");
+
+            entity.HasOne(d => d.MaNguoiTaoNavigation).WithMany(p => p.BaoCaoThienTai)
+                .HasForeignKey(d => d.MaNguoiTao)
+                .HasConstraintName("FK__BaoCaoThi__MaNgu__2645B050");
+
+            entity.HasOne(d => d.MaTrangThaiNavigation).WithMany(p => p.BaoCaoThienTai)
+                .HasForeignKey(d => d.MaTrangThai)
+                .HasConstraintName("FK__BaoCaoThi__MaTra__2739D489");
+
+            entity.HasOne(d => d.MaTruotLoNavigation).WithMany(p => p.BaoCaoThienTai)
+                .HasForeignKey(d => d.MaTruotLo)
+                .HasConstraintName("FK__BaoCaoThi__MaTru__236943A5");
+
+            entity.HasOne(d => d.MaXaNavigation).WithMany(p => p.BaoCaoThienTai)
+                .HasForeignKey(d => d.MaXa)
+                .HasConstraintName("FK__BaoCaoThie__MaXa__25518C17");
+        });
+
         modelBuilder.Entity<BienDongRung>(entity =>
         {
             entity.HasKey(e => e.MaBienDong).HasName("PK__BienDong__1BB1521F47E15F89");
@@ -92,6 +134,70 @@ public partial class ForestManagementSystemContext : DbContext
             entity.HasOne(d => d.MaLoDatNavigation).WithMany(p => p.BienDongRung)
                 .HasForeignKey(d => d.MaLoDat)
                 .HasConstraintName("FK__BienDongR__MaLoD__75A278F5");
+        });
+
+        modelBuilder.Entity<DiemLuQuet>(entity =>
+        {
+            entity.HasKey(e => e.MaLuQuet).HasName("PK__DiemLuQu__84C9915E515F8D6B");
+
+            entity.Property(e => e.MucDoNghiemTrong)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.NgayCapNhat)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.NguyenNhan).HasColumnType("text");
+            entity.Property(e => e.TenDiem)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.ThietHai).HasColumnType("text");
+            entity.Property(e => e.ToaDo)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.MaNguoiCapNhatNavigation).WithMany(p => p.DiemLuQuet)
+                .HasForeignKey(d => d.MaNguoiCapNhat)
+                .HasConstraintName("FK__DiemLuQue__MaNgu__1F98B2C1");
+
+            entity.HasOne(d => d.MaTrangThaiNavigation).WithMany(p => p.DiemLuQuet)
+                .HasForeignKey(d => d.MaTrangThai)
+                .HasConstraintName("FK__DiemLuQue__MaTra__1EA48E88");
+
+            entity.HasOne(d => d.MaXaNavigation).WithMany(p => p.DiemLuQuet)
+                .HasForeignKey(d => d.MaXa)
+                .HasConstraintName("FK__DiemLuQuet__MaXa__1DB06A4F");
+        });
+
+        modelBuilder.Entity<DiemTruotLo>(entity =>
+        {
+            entity.HasKey(e => e.MaTruotLo).HasName("PK__DiemTruo__38197F7913B38DCD");
+
+            entity.Property(e => e.MucDoNghiemTrong)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.NgayCapNhat)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.NguyenNhan).HasColumnType("text");
+            entity.Property(e => e.TenDiem)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.ThietHai).HasColumnType("text");
+            entity.Property(e => e.ToaDo)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.MaNguoiCapNhatNavigation).WithMany(p => p.DiemTruotLo)
+                .HasForeignKey(d => d.MaNguoiCapNhat)
+                .HasConstraintName("FK__DiemTruot__MaNgu__19DFD96B");
+
+            entity.HasOne(d => d.MaTrangThaiNavigation).WithMany(p => p.DiemTruotLo)
+                .HasForeignKey(d => d.MaTrangThai)
+                .HasConstraintName("FK__DiemTruot__MaTra__18EBB532");
+
+            entity.HasOne(d => d.MaXaNavigation).WithMany(p => p.DiemTruotLo)
+                .HasForeignKey(d => d.MaXa)
+                .HasConstraintName("FK__DiemTruotL__MaXa__17F790F9");
         });
 
         modelBuilder.Entity<DienTichChuaCoRung>(entity =>

@@ -231,32 +231,68 @@ namespace ForestManagementSystem.Forms
 
             // Loại Rừng (ComboBox)
             var cmbLoaiRung = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            var loaiRungList = await _context.LoaiRung.ToListAsync();
+            var loaiRungList = _context.LoaiRung.ToList();
             cmbLoaiRung.DataSource = loaiRungList;
             cmbLoaiRung.DisplayMember = "TenLoaiRung";
             cmbLoaiRung.ValueMember = "MaLoaiRung";
-            if (loDat != null && loDat.MaLoaiRung.HasValue)
-                cmbLoaiRung.SelectedValue = loDat.MaLoaiRung.Value;
+
+            // Đợi ComboBox render xong rồi mới set SelectedValue
+            this.BeginInvoke(new Action(() => {
+                if (loDat != null && loDat.MaLoaiRung.HasValue)
+                {
+                    cmbLoaiRung.SelectedValue = loDat.MaLoaiRung.Value;
+                    Console.WriteLine($"SelectedValue Loại Rừng sau khi set: {cmbLoaiRung.SelectedValue}");
+                }
+                else
+                {
+                    cmbLoaiRung.SelectedIndex = -1;
+                }
+            }));
+
             AddControlRow(cmbLoaiRung, "Loại Rừng:");
 
             // Nguồn Gốc (ComboBox)
             var cmbNguonGoc = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            var nguonGocList = await _context.NguonGocRung.ToListAsync();
+            var nguonGocList = _context.NguonGocRung.ToList();
             cmbNguonGoc.DataSource = nguonGocList;
             cmbNguonGoc.DisplayMember = "TenNguonGoc";
             cmbNguonGoc.ValueMember = "MaNguonGoc";
-            if (loDat != null && loDat.MaNguonGoc.HasValue)
-                cmbNguonGoc.SelectedValue = loDat.MaNguonGoc.Value;
+
+            // Đợi ComboBox render xong rồi mới set SelectedValue
+            this.BeginInvoke(new Action(() => {
+                if (loDat != null && loDat.MaNguonGoc.HasValue)
+                {
+                    cmbNguonGoc.SelectedValue = loDat.MaNguonGoc.Value;
+                    Console.WriteLine($"SelectedValue Nguồn Gốc sau khi set: {cmbNguonGoc.SelectedValue}");
+                }
+                else
+                {
+                    cmbNguonGoc.SelectedIndex = -1;
+                }
+            }));
+
             AddControlRow(cmbNguonGoc, "Nguồn Gốc:");
 
             // Lập Địa (ComboBox)
             var cmbLapDia = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            var lapDiaList = await _context.DieuKienLapDia.ToListAsync();
+            var lapDiaList = _context.DieuKienLapDia.ToList();
             cmbLapDia.DataSource = lapDiaList;
             cmbLapDia.DisplayMember = "TenLapDia";
             cmbLapDia.ValueMember = "MaLapDia";
-            if (loDat != null && loDat.MaLapDia.HasValue)
-                cmbLapDia.SelectedValue = loDat.MaLapDia.Value;
+
+            // Đợi ComboBox render xong rồi mới set SelectedValue
+            this.BeginInvoke(new Action(() => {
+                if (loDat != null && loDat.MaLapDia.HasValue)
+                {
+                    cmbLapDia.SelectedValue = loDat.MaLapDia.Value;
+                    Console.WriteLine($"SelectedValue Lập Địa sau khi set: {cmbLapDia.SelectedValue}");
+                }
+                else
+                {
+                    cmbLapDia.SelectedIndex = -1;
+                }
+            }));
+
             AddControlRow(cmbLapDia, "Lập Địa:");
 
             // Chủ Sở Hữu (TextBox)
