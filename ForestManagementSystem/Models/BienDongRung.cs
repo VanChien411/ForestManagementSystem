@@ -11,7 +11,7 @@ public partial class BienDongRung
 
     public int? MaLoDat { get; set; }
 
-    public DateOnly NgayBienDong { get; set; }
+    public DateTime NgayBienDong { get; set; }
 
     public string LoaiBienDong { get; set; } = null!;
 

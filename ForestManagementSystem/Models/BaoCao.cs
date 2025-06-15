@@ -11,7 +11,7 @@ public partial class BaoCao
 
     public string? LoaiBaoCao { get; set; }
 
-    public DateOnly? NgayBaoCao { get; set; }
+    public DateTime? NgayBaoCao { get; set; }
 
     public string? NoiDung { get; set; }
 

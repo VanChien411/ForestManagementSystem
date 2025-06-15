@@ -55,6 +55,8 @@ public partial class ForestManagementSystemContext : DbContext
 
     public virtual DbSet<PhanQuyenNhom> PhanQuyenNhom { get; set; }
 
+    public virtual DbSet<QuyHoachRung> QuyHoachRung { get; set; }
+
     public virtual DbSet<TrangThai> TrangThai { get; set; }
 
     public virtual DbSet<TruLuong> TruLuong { get; set; }
@@ -63,11 +65,12 @@ public partial class ForestManagementSystemContext : DbContext
     {
         modelBuilder.Entity<BaoCao>(entity =>
         {
-            entity.HasKey(e => e.MaBaoCao).HasName("PK__BaoCao__25A9188CB0DD52CA");
+            entity.HasKey(e => e.MaBaoCao).HasName("PK__BaoCao__25A9188C9D9357FA");
 
             entity.Property(e => e.LoaiBaoCao)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.NgayBaoCao).HasColumnType("datetime");
             entity.Property(e => e.NoiDung).HasColumnType("text");
 
             entity.HasOne(d => d.MaNguoiDungNavigation).WithMany(p => p.BaoCao)
@@ -77,13 +80,14 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<BienDongRung>(entity =>
         {
-            entity.HasKey(e => e.MaBienDong).HasName("PK__BienDong__1BB1521FCCAE3C37");
+            entity.HasKey(e => e.MaBienDong).HasName("PK__BienDong__1BB1521F47E15F89");
 
             entity.Property(e => e.DienTichBienDong).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.LoaiBienDong)
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.MoTa).HasColumnType("text");
+            entity.Property(e => e.NgayBienDong).HasColumnType("datetime");
 
             entity.HasOne(d => d.MaLoDatNavigation).WithMany(p => p.BienDongRung)
                 .HasForeignKey(d => d.MaLoDat)
@@ -92,7 +96,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<DienTichChuaCoRung>(entity =>
         {
-            entity.HasKey(e => e.MaChuaCoRung).HasName("PK__DienTich__5B3E3D35B80F5A9F");
+            entity.HasKey(e => e.MaChuaCoRung).HasName("PK__DienTich__5B3E3D354C4EBD8D");
 
             entity.Property(e => e.DienTich).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.KeHoachTrongRung).HasColumnType("text");
@@ -108,7 +112,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<DieuKienLapDia>(entity =>
         {
-            entity.HasKey(e => e.MaLapDia).HasName("PK__DieuKien__3E46A489A80CCD7B");
+            entity.HasKey(e => e.MaLapDia).HasName("PK__DieuKien__3E46A489B3F994DB");
 
             entity.Property(e => e.DoAm).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.DoDoc).HasColumnType("decimal(5, 2)");
@@ -123,7 +127,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<DonViHanhChinhHuyen>(entity =>
         {
-            entity.HasKey(e => e.MaHuyen).HasName("PK__DonViHan__038427513FC1684E");
+            entity.HasKey(e => e.MaHuyen).HasName("PK__DonViHan__0384275124B89D96");
 
             entity.Property(e => e.TenHuyen)
                 .HasMaxLength(100)
@@ -136,7 +140,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<DonViHanhChinhTinh>(entity =>
         {
-            entity.HasKey(e => e.MaTinh).HasName("PK__DonViHan__4CC544802EF29714");
+            entity.HasKey(e => e.MaTinh).HasName("PK__DonViHan__4CC544803254DCC7");
 
             entity.Property(e => e.TenTinh)
                 .HasMaxLength(100)
@@ -145,7 +149,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<DonViHanhChinhXa>(entity =>
         {
-            entity.HasKey(e => e.MaXa).HasName("PK__DonViHan__272520C93AAF8D22");
+            entity.HasKey(e => e.MaXa).HasName("PK__DonViHan__272520C93BE81C0B");
 
             entity.Property(e => e.TenXa)
                 .HasMaxLength(100)
@@ -158,8 +162,9 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<HuongDanSuDung>(entity =>
         {
-            entity.HasKey(e => e.MaHuongDan).HasName("PK__HuongDan__3D465C430AA61476");
+            entity.HasKey(e => e.MaHuongDan).HasName("PK__HuongDan__3D465C4356BB1F5F");
 
+            entity.Property(e => e.NgayCapNhat).HasColumnType("datetime");
             entity.Property(e => e.NoiDung).HasColumnType("text");
             entity.Property(e => e.TieuDe)
                 .HasMaxLength(100)
@@ -168,7 +173,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<KhuRung>(entity =>
         {
-            entity.HasKey(e => e.MaKhuRung).HasName("PK__KhuRung__9A8EDB104E8BC9D5");
+            entity.HasKey(e => e.MaKhuRung).HasName("PK__KhuRung__9A8EDB10979671F9");
 
             entity.Property(e => e.MoTa).HasColumnType("text");
             entity.Property(e => e.TenKhuRung)
@@ -198,7 +203,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<LichSuTacDong>(entity =>
         {
-            entity.HasKey(e => e.MaTacDong).HasName("PK__LichSuTa__63E49C55ACB743C2");
+            entity.HasKey(e => e.MaTacDong).HasName("PK__LichSuTa__63E49C55048B8D2C");
 
             entity.Property(e => e.HanhDong)
                 .HasMaxLength(100)
@@ -215,7 +220,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<LichSuTruyCap>(entity =>
         {
-            entity.HasKey(e => e.MaLichSu).HasName("PK__LichSuTr__C443222A1670DCEE");
+            entity.HasKey(e => e.MaLichSu).HasName("PK__LichSuTr__C443222A6E1EFAF8");
 
             entity.Property(e => e.HanhDong)
                 .HasMaxLength(100)
@@ -234,7 +239,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<LoDatRung>(entity =>
         {
-            entity.HasKey(e => e.MaLoDat).HasName("PK__LoDatRun__C0D91E7FE0E651C5");
+            entity.HasKey(e => e.MaLoDat).HasName("PK__LoDatRun__C0D91E7FBB2CD49E");
 
             entity.Property(e => e.ChuSoHuu)
                 .HasMaxLength(100)
@@ -265,7 +270,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<LoaiCay>(entity =>
         {
-            entity.HasKey(e => e.MaLoaiCay).HasName("PK__LoaiCay__91531ADC729FEE7D");
+            entity.HasKey(e => e.MaLoaiCay).HasName("PK__LoaiCay__91531ADC19214580");
 
             entity.Property(e => e.MoTa).HasColumnType("text");
             entity.Property(e => e.TenKhoaHoc)
@@ -278,7 +283,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<LoaiRung>(entity =>
         {
-            entity.HasKey(e => e.MaLoaiRung).HasName("PK__LoaiRung__3E97745E385F8A5B");
+            entity.HasKey(e => e.MaLoaiRung).HasName("PK__LoaiRung__3E97745EC762DA13");
 
             entity.Property(e => e.MoTa).HasColumnType("text");
             entity.Property(e => e.TenLoaiRung)
@@ -288,7 +293,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<Menu>(entity =>
         {
-            entity.HasKey(e => e.MaMenu).HasName("PK__Menu__0EBABE42EF6A8EE2");
+            entity.HasKey(e => e.MaMenu).HasName("PK__Menu__0EBABE42D1785DA4");
 
             entity.Property(e => e.DuongDan)
                 .HasMaxLength(200)
@@ -304,7 +309,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<NguoiDung>(entity =>
         {
-            entity.HasKey(e => e.MaNguoiDung).HasName("PK__NguoiDun__C539D76266945E41");
+            entity.HasKey(e => e.MaNguoiDung).HasName("PK__NguoiDun__C539D7621F680789");
 
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
@@ -333,7 +338,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<NguoiDung_Nhom>(entity =>
         {
-            entity.HasKey(e => new { e.MaNguoiDung, e.MaNhom }).HasName("PK__NguoiDun__070D2E7E9D3679E4");
+            entity.HasKey(e => new { e.MaNguoiDung, e.MaNhom }).HasName("PK__NguoiDun__070D2E7ED979064B");
 
             entity.Property(e => e.NgayThamGia)
                 .HasDefaultValueSql("(getdate())")
@@ -356,7 +361,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<NguonGocRung>(entity =>
         {
-            entity.HasKey(e => e.MaNguonGoc).HasName("PK__NguonGoc__BD3EA836197258A6");
+            entity.HasKey(e => e.MaNguonGoc).HasName("PK__NguonGoc__BD3EA836273936C8");
 
             entity.Property(e => e.TenNguonGoc)
                 .HasMaxLength(50)
@@ -365,7 +370,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<NhomNguoiDung>(entity =>
         {
-            entity.HasKey(e => e.MaNhom).HasName("PK__NhomNguo__234F91CD61A348B2");
+            entity.HasKey(e => e.MaNhom).HasName("PK__NhomNguo__234F91CD62248B01");
 
             entity.Property(e => e.MoTa).HasColumnType("text");
             entity.Property(e => e.TenNhom)
@@ -379,7 +384,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<PhanQuyenNguoiDung>(entity =>
         {
-            entity.HasKey(e => e.MaPhanQuyenNguoiDung).HasName("PK__PhanQuye__31EFE567FD6F9768");
+            entity.HasKey(e => e.MaPhanQuyenNguoiDung).HasName("PK__PhanQuye__31EFE5672F21897F");
 
             entity.Property(e => e.MaQuyen)
                 .HasMaxLength(50)
@@ -396,7 +401,7 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<PhanQuyenNhom>(entity =>
         {
-            entity.HasKey(e => e.MaPhanQuyenNhom).HasName("PK__PhanQuye__18BA14B6B0953D60");
+            entity.HasKey(e => e.MaPhanQuyenNhom).HasName("PK__PhanQuye__18BA14B695A9030D");
 
             entity.Property(e => e.MaQuyen)
                 .HasMaxLength(50)
@@ -411,9 +416,36 @@ public partial class ForestManagementSystemContext : DbContext
                 .HasConstraintName("FK__PhanQuyen__MaTra__4F7CD00D");
         });
 
+        modelBuilder.Entity<QuyHoachRung>(entity =>
+        {
+            entity.HasKey(e => e.MaQuyHoach).HasName("PK__QuyHoach__FC471482D9DAF75A");
+
+            entity.Property(e => e.DuongDanBanDo)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.KyQuyHoach)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.NgayBatDau).HasColumnType("datetime");
+            entity.Property(e => e.NgayKetThuc).HasColumnType("datetime");
+            entity.Property(e => e.NoiDungBaoCao).HasColumnType("text");
+
+            entity.HasOne(d => d.MaKhuRungNavigation).WithMany(p => p.QuyHoachRung)
+                .HasForeignKey(d => d.MaKhuRung)
+                .HasConstraintName("FK__QuyHoachR__MaKhu__02FC7413");
+
+            entity.HasOne(d => d.MaNguoiDungNavigation).WithMany(p => p.QuyHoachRung)
+                .HasForeignKey(d => d.MaNguoiDung)
+                .HasConstraintName("FK__QuyHoachR__MaNgu__03F0984C");
+
+            entity.HasOne(d => d.MaTrangThaiNavigation).WithMany(p => p.QuyHoachRung)
+                .HasForeignKey(d => d.MaTrangThai)
+                .HasConstraintName("FK__QuyHoachR__MaTra__04E4BC85");
+        });
+
         modelBuilder.Entity<TrangThai>(entity =>
         {
-            entity.HasKey(e => e.MaTrangThai).HasName("PK__TrangTha__AADE4138F40228BF");
+            entity.HasKey(e => e.MaTrangThai).HasName("PK__TrangTha__AADE41381C952C3F");
 
             entity.Property(e => e.MoTa).HasColumnType("text");
             entity.Property(e => e.TenTrangThai)
@@ -423,8 +455,9 @@ public partial class ForestManagementSystemContext : DbContext
 
         modelBuilder.Entity<TruLuong>(entity =>
         {
-            entity.HasKey(e => e.MaTruLuong).HasName("PK__TruLuong__3309B7A008D0CF5C");
+            entity.HasKey(e => e.MaTruLuong).HasName("PK__TruLuong__3309B7A0C065142D");
 
+            entity.Property(e => e.NgayKiemKe).HasColumnType("datetime");
             entity.Property(e => e.TheTichGo).HasColumnType("decimal(10, 2)");
 
             entity.HasOne(d => d.MaLoDatNavigation).WithMany(p => p.TruLuong)

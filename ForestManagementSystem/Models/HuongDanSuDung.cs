@@ -13,5 +13,5 @@ public partial class HuongDanSuDung
 
     public string? NoiDung { get; set; }
 
-    public DateOnly? NgayCapNhat { get; set; }
+    public DateTime? NgayCapNhat { get; set; }
 }

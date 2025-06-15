@@ -1,6 +1,8 @@
 using ForestManagementSystem.Models;
+using ForestManagementSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using ForestManagementSystem.Forms;
 
@@ -8,6 +10,8 @@ namespace ForestManagementSystem
 {
     internal static class Program
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -17,6 +21,10 @@ namespace ForestManagementSystem
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            ServiceProvider = services.BuildServiceProvider();
 
             // Configure DbContext
             var optionsBuilder = new DbContextOptionsBuilder<ForestManagementSystemContext>();
@@ -29,7 +37,19 @@ namespace ForestManagementSystem
                 context.Database.EnsureCreated();
             }
 
-            Application.Run(new MainForm());
+            var mainForm = ServiceProvider.GetRequiredService<MainForm>();
+            Application.Run(mainForm);
+        }
+
+        private static void ConfigureServices(ServiceCollection services)
+        {
+            // Configure DbContext
+            services.AddDbContext<ForestManagementSystemContext>(options =>
+                options.UseSqlServer("Data Source=HT-ITN\\SQLEXPRESS;Initial Catalog=ForestManagementSystem;Integrated Security=True;Trust Server Certificate=True"));
+
+            // Register forms
+            services.AddTransient<MainForm>();
+            services.AddTransient<ucDefault>();
         }
     }
 }

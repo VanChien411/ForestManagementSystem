@@ -24,4 +24,6 @@ public partial class TrangThai
     public virtual ICollection<PhanQuyenNguoiDung> PhanQuyenNguoiDung { get; set; } = new List<PhanQuyenNguoiDung>();
 
     public virtual ICollection<PhanQuyenNhom> PhanQuyenNhom { get; set; } = new List<PhanQuyenNhom>();
+
+    public virtual ICollection<QuyHoachRung> QuyHoachRung { get; set; } = new List<QuyHoachRung>();
 }

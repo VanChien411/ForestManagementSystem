@@ -32,4 +32,6 @@ public partial class KhuRung
     public virtual NguoiDung? MaNguoiSoHuuNavigation { get; set; }
 
     public virtual NguonGocRung? MaNguonGocNavigation { get; set; }
+
+    public virtual ICollection<QuyHoachRung> QuyHoachRung { get; set; } = new List<QuyHoachRung>();
 }

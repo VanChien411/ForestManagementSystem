@@ -8,20 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ForestManagementSystem.Models;
-using ForestManagementSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace ForestManagementSystem.Forms
 {
-    public partial class ucDefault : UserControl
+    public partial class ucQuyHoachRung : UserControl
     {
         private readonly ForestManagementSystemContext _context;
 
-        public ucDefault(ForestManagementSystemContext context)
+        public ucQuyHoachRung(ForestManagementSystemContext context)
         {
             InitializeComponent();
             _context = context;
             InitializeDataGridView();
+            lbHeader.Text = "Quy Hoạch Rừng";
+            gListCard.Text = "Danh Sách Quy Hoạch Rừng";
+            dataGridView1.CellClick += DataGridView1_CellClick;
         }
 
         private void InitializeDataGridView()
@@ -70,78 +72,8 @@ namespace ForestManagementSystem.Forms
             dataGridView1.MultiSelect = false;
         }
 
-        private void ucDefault_Load(object sender, EventArgs e)
-        {
-            // Add new row button at the top
-            var addButton = new Button
-            {
-                Text = "Thêm mới",
-                Dock = DockStyle.Top,
-                Height = 30,
-                Margin = new Padding(0, 0, 0, 10)
-            };
-            addButton.Click += (s, e) =>
-            {
-                using (var form = new EditForm(_context))
-                {
-                    form.lbHeader.Text = "Thêm Quy Hoạch Rừng";
-                    InitializeEditFormControls(form, null);
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadData();
-                    }
-                }
-            };
-            this.Controls.Add(addButton);
-
-            LoadData();
-        }
-
         private void LoadData()
         {
-            // Clear existing columns
-            dataGridView1.Columns.Clear();
-
-            // Add data columns
-            dataGridView1.Columns.Add("MaQuyHoach", "Mã Quy Hoạch");
-            dataGridView1.Columns.Add("MaKhuRung", "Mã Khu Rừng");
-            dataGridView1.Columns.Add("KyQuyHoach", "Kỳ Quy Hoạch");
-            dataGridView1.Columns.Add("NgayBatDau", "Ngày Bắt Đầu");
-            dataGridView1.Columns.Add("NgayKetThuc", "Ngày Kết Thúc");
-            dataGridView1.Columns.Add("NoiDungBaoCao", "Nội Dung Báo Cáo");
-            dataGridView1.Columns.Add("DuongDanBanDo", "Đường Dẫn Bản Đồ");
-            dataGridView1.Columns.Add("MaNguoiDung", "Mã Người Dùng");
-            dataGridView1.Columns.Add("MaTrangThai", "Mã Trạng Thái");
-
-            // Add action button columns
-            var editColumn = new DataGridViewButtonColumn
-            {
-                Name = "Edit",
-                HeaderText = "Sửa",
-                Text = "Sửa",
-                UseColumnTextForButtonValue = true,
-                Width = 60
-            };
-            dataGridView1.Columns.Add(editColumn);
-
-            var deleteColumn = new DataGridViewButtonColumn
-            {
-                Name = "Delete",
-                HeaderText = "Xóa",
-                Text = "Xóa",
-                UseColumnTextForButtonValue = true,
-                Width = 60
-            };
-            dataGridView1.Columns.Add(deleteColumn);
-
-            // Set column properties
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ReadOnly = true;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.MultiSelect = false;
-
             // Load data
             var quyHoachList = _context.QuyHoachRung.ToList();
             dataGridView1.Rows.Clear();
@@ -218,7 +150,7 @@ namespace ForestManagementSystem.Forms
             form.tbBody.Padding = new Padding(10);
             form.tbBody.ColumnStyles.Clear();
             form.tbBody.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            form.tbBody.AutoScroll = true; // Enable scrolling if needed
+            form.tbBody.AutoScroll = true;
 
             // Add controls for each field
             int rowIndex = 0;
@@ -255,7 +187,7 @@ namespace ForestManagementSystem.Forms
                 rowPanel.Controls.Add(control, 1, 0);
 
                 form.tbBody.Controls.Add(rowPanel, 0, rowIndex);
-                form.tbBody.RowStyles.Add(new RowStyle(SizeType.Absolute, height + 10)); // Add extra padding
+                form.tbBody.RowStyles.Add(new RowStyle(SizeType.Absolute, height + 10));
                 rowIndex++;
             }
 
@@ -356,6 +288,33 @@ namespace ForestManagementSystem.Forms
             {
                 form.DialogResult = DialogResult.Cancel;
             };
+        }
+
+        private void ucQuyHoachRung_Load_1(object sender, EventArgs e)
+        {
+            // Add new row button at the top
+            var addButton = new Button
+            {
+                Text = "Thêm mới",
+                Dock = DockStyle.Top,
+                Height = 30,
+                Margin = new Padding(0, 0, 0, 10)
+            };
+            addButton.Click += (s, e) =>
+            {
+                using (var form = new EditForm(_context))
+                {
+                    form.lbHeader.Text = "Thêm Quy Hoạch Rừng";
+                    InitializeEditFormControls(form, null);
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                    }
+                }
+            };
+            this.Controls.Add(addButton);
+
+            LoadData();
         }
     }
 }

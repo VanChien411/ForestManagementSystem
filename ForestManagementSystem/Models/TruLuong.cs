@@ -17,7 +17,7 @@ public partial class TruLuong
 
     public int? SoLuongCay { get; set; }
 
-    public DateOnly? NgayKiemKe { get; set; }
+    public DateTime? NgayKiemKe { get; set; }
 
     public virtual LoDatRung? MaLoDatNavigation { get; set; }
 

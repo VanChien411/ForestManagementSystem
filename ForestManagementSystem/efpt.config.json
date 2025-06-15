@@ -99,6 +99,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[QuyHoachRung]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[TrangThai]",
          "ObjectType": 0
       },

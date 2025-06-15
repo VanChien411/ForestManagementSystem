@@ -38,4 +38,6 @@ public partial class NguoiDung
     public virtual ICollection<NguoiDung_Nhom> NguoiDung_Nhom { get; set; } = new List<NguoiDung_Nhom>();
 
     public virtual ICollection<PhanQuyenNguoiDung> PhanQuyenNguoiDung { get; set; } = new List<PhanQuyenNguoiDung>();
+
+    public virtual ICollection<QuyHoachRung> QuyHoachRung { get; set; } = new List<QuyHoachRung>();
 }
