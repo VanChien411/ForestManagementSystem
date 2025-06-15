@@ -117,5 +117,53 @@ namespace ForestManagementSystem.Forms
                 MessageBox.Show($"Lỗi khi tạo form NguonGocRung: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void customButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var form = new Form
+                {
+                    Text = "Danh Mục Rừng Theo Nguồn Gốc",
+                    WindowState = FormWindowState.Maximized,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+
+                var ucDanhMucRungTheoNguonGoc = new ucDanhMucRungTheoNguonGoc(_context)
+                {
+                    Dock = DockStyle.Fill
+                };
+                form.Controls.Add(ucDanhMucRungTheoNguonGoc);
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tạo form DanhMucRungTheoNguonGoc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void customButton5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var form = new Form
+                {
+                    Text = "Danh Mục Thuộc Tính Loại Đất",
+                    WindowState = FormWindowState.Maximized,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+
+                var ucDanhMucThuocTinhLoDat = new ucDanhMucThuocTinhLoDat(_context)
+                {
+                    Dock = DockStyle.Fill
+                };
+                form.Controls.Add(ucDanhMucThuocTinhLoDat);
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tạo form DanhMucThuocTinhLoDat: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

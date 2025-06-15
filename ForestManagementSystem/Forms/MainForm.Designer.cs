@@ -232,8 +232,9 @@
             customButton4.Name = "customButton4";
             customButton4.Size = new Size(536, 50);
             customButton4.TabIndex = 8;
-            customButton4.Text = "customButton4";
+            customButton4.Text = "Danh mục rừng theo nguồn góc và lập địa";
             customButton4.TextColor = Color.White;
+            customButton4.Click += customButton4_Click;
             // 
             // customButton5
             // 
@@ -252,8 +253,9 @@
             customButton5.Name = "customButton5";
             customButton5.Size = new Size(536, 50);
             customButton5.TabIndex = 9;
-            customButton5.Text = "customButton5";
+            customButton5.Text = "Danh mục thuộc tính lô đất";
             customButton5.TextColor = Color.White;
+            customButton5.Click += customButton5_Click;
             // 
             // MainForm
             // 
